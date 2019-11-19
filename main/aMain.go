@@ -8,7 +8,6 @@ type GMain struct {
 	n int
 	s string
 }
-
 //NewGMain is GMain's constructor
 func NewGMain (i int, n int) *GMain {
     p := new(GMain)
