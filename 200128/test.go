@@ -5,8 +5,9 @@ import (
     "encoding/csv"
     "fmt"
 	"os"
-	"lib"
 )
+
+//Class
 
 //Taiyaki Class
 type Taiyaki struct{}
@@ -21,6 +22,7 @@ func (t Taiyaki) Shippo() {
     fmt.Println("たい焼きの尻尾にはあんこがほとんど入っていない")
     fmt.Println("しかしカリカリしていて美味しい")
 }
+
 
 //Main
 func main() {
