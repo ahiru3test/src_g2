@@ -1,13 +1,26 @@
 package main
 
-//Import
 import (
     "encoding/csv"
     "fmt"
 	"os"
 )
 
+//----------
 //Class
+
+//CSVTable Class
+type CSVTable struct{
+	file	string
+}
+func (t CSVTable) aaa() {
+}
+
+//Chara Class
+type Chara struct{
+}
+func (t Chara) aaa() {
+}
 
 //Taiyaki Class
 type Taiyaki struct{}
@@ -24,8 +37,12 @@ func (t Taiyaki) Shippo() {
 }
 
 
-//Main
+//----------
 func main() {
+//	m := make(map[string]int)
+//	m := map[string]int{}
+	
+
     file, err := os.Open("./aaa.csv")
     if err != nil {
         panic(err)
