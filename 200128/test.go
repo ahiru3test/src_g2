@@ -20,7 +20,7 @@ type CSVTable struct{
 func NewCSVTable (file string) *CSVTable {
 	o := new(CSVTable)
 	o.sFile = file
-
+	o.eErr = nil
 	//
 
 	return o
@@ -70,7 +70,7 @@ func main() {
 //	m := make(map[string]int)
 //	m := map[string]int{}
 	csvt := NewCSVTable("./aaa.csv")
-	fmt.Printf("fname: %s\n", csvt.sFile)
+	fmt.Printf("fname: %s, error:%s\n", csvt.sFile, csvt.eErr)
 	
 	//
     file, err := os.Open("./aaa.csv")
