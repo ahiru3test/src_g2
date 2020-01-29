@@ -11,10 +11,38 @@ import (
 
 //CSVTable Class
 type CSVTable struct{
-	file	string
+	sFile	string
+	eErr	error
+	mCsv	map[string]int
 }
-func (t CSVTable) aaa() {
+
+//NewCSVTable CSVTable constructor
+func NewCSVTable (file string) *CSVTable {
+	o := new(CSVTable)
+	o.sFile = file
+
+	//
+
+	return o
 }
+
+/*
+func (t CSVTable) init(file string) {
+	sFile := file
+}
+*/
+
+/*
+func NewPerson (name string, age int) *Person {
+    if age < 0 {
+        return nil
+    }
+    p := new(Person)
+    p.Name = name
+    p.Age = age
+    return p
+}
+*/
 
 //Chara Class
 type Chara struct{
@@ -41,8 +69,10 @@ func (t Taiyaki) Shippo() {
 func main() {
 //	m := make(map[string]int)
 //	m := map[string]int{}
+	csvt := NewCSVTable("./aaa.csv")
+	fmt.Printf("fname: %s\n", csvt.sFile)
 	
-
+	//
     file, err := os.Open("./aaa.csv")
     if err != nil {
         panic(err)
