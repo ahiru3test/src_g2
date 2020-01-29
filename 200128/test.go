@@ -4,6 +4,7 @@ import (
     "encoding/csv"
     "fmt"
 	"os"
+	"strings"
 )
 
 //----------
@@ -11,17 +12,55 @@ import (
 
 //CSVTable Class
 type CSVTable struct{
-	sFile	string
-	eErr	error
-	mCsv	map[string]int
+	sFilePath	string
+//	eErr		error
+	sHeader		[]String
+	mCsv		map[int]string
+	mCsv2		map[int][string]string
 }
 
 //NewCSVTable CSVTable constructor
-func NewCSVTable (file string) *CSVTable {
+func NewCSVTable (sFilePath string) *CSVTable {
+	//init
 	o := new(CSVTable)
-	o.sFile = file
-	o.eErr = nil
-	//
+	o.sFilePath = sFilePath
+//	o.eErr = nil
+
+	//open
+	file, err := os.Open(o.sFilePath)
+    if err != nil {
+        panic(err)
+    }
+    defer file.Close()
+
+	//read
+    reader := csv.NewReader(file)
+	var line []string
+	var s string
+	line, err = reader.Read()
+
+	for _, str
+	s = line[0]
+		fmt.Printf("[%s]", s)
+	if err != nil {
+		slice := strings.Split(s, ",")
+		for _, str := range slice {
+			fmt.Printf("[%s]", str)
+		}
+	} else {
+		//error
+	}
+
+	//read firstline
+/*
+    for {
+        line, err = reader.Read()
+        if err != nil {
+            break
+        }
+        fmt.Println(line)
+    }
+*/
 
 	return o
 }
@@ -70,9 +109,10 @@ func main() {
 //	m := make(map[string]int)
 //	m := map[string]int{}
 	csvt := NewCSVTable("./aaa.csv")
-	fmt.Printf("fname: %s, error:%s\n", csvt.sFile, csvt.eErr)
+	fmt.Printf("fname: %s\n", csvt.sFilePath)
 	
 	//
+/*	
     file, err := os.Open("./aaa.csv")
     if err != nil {
         panic(err)
@@ -88,5 +128,6 @@ func main() {
             break
         }
         fmt.Println(line)
-    }
+	}
+*/
 }
