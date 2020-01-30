@@ -4,7 +4,7 @@ import (
     "encoding/csv"
     "fmt"
 	"os"
-	"strings"
+//	"strings"
 )
 
 //----------
@@ -14,20 +14,23 @@ import (
 type CSVTable struct{
 	sFilePath	string
 //	eErr		error
-	sHeader		[]String
-	mCsv		map[int]string
-	mCsv2		map[int][string]string
+	sHeader		[]string
+//	mCsv		map[int]string
+//	mCsv2		map[int][string]string
 }
 
 //NewCSVTable CSVTable constructor
-func NewCSVTable (sFilePath string) *CSVTable {
+func NewCSVTable () *CSVTable {
 	//init
-	o := new(CSVTable)
-	o.sFilePath = sFilePath
-//	o.eErr = nil
+	return new(CSVTable)
+}
+
+func (me CSVTable) init(sFilePath string) {
+	//init
+	me.sFilePath = sFilePath
 
 	//open
-	file, err := os.Open(o.sFilePath)
+	file, err := os.Open(me.sFilePath)
     if err != nil {
         panic(err)
     }
@@ -36,9 +39,24 @@ func NewCSVTable (sFilePath string) *CSVTable {
 	//read
     reader := csv.NewReader(file)
 	var line []string
-	var s string
 	line, err = reader.Read()
 
+	me.sHeader = make([]string, 0)
+
+	for i, s := range line {
+		fmt.Printf("index: %d, name: %s\n", i, s)
+		me.sHeader[i] = s
+	}
+
+//	n := len(line)
+/*
+	for i:=0; i<len(line); i++ {
+		o.mCsv[i] = line[i]
+		fmt.Printf("line[%d]:%s\n", i, line[i])
+	}
+*/
+
+/*
 	for _, str
 	s = line[0]
 		fmt.Printf("[%s]", s)
@@ -50,6 +68,7 @@ func NewCSVTable (sFilePath string) *CSVTable {
 	} else {
 		//error
 	}
+*/
 
 	//read firstline
 /*
@@ -62,14 +81,7 @@ func NewCSVTable (sFilePath string) *CSVTable {
     }
 */
 
-	return o
 }
-
-/*
-func (t CSVTable) init(file string) {
-	sFile := file
-}
-*/
 
 /*
 func NewPerson (name string, age int) *Person {
@@ -108,7 +120,8 @@ func (t Taiyaki) Shippo() {
 func main() {
 //	m := make(map[string]int)
 //	m := map[string]int{}
-	csvt := NewCSVTable("./aaa.csv")
+	csvt := NewCSVTable()
+	csvt.init("./aaa.csv")
 	fmt.Printf("fname: %s\n", csvt.sFilePath)
 	
 	//
