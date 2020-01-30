@@ -121,7 +121,7 @@ func main() {
 //	m := make(map[string]int)
 //	m := map[string]int{}
 	csvt := NewCSVTable()
-	csvt.init("./aaa.csv")
+	csvt.init("./200130/aaa.csv")
 	fmt.Printf("fname: %s\n", csvt.sFilePath)
 	
 	//
