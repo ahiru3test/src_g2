@@ -45,7 +45,7 @@ func (me CSVTable) init(sFilePath string) {
 
 	for i, s := range line {
 		fmt.Printf("index: %d, name: %s\n", i, s)
-		me.sHeader[i] = s
+//		me.sHeader[i] = s
 	}
 
 //	n := len(line)
